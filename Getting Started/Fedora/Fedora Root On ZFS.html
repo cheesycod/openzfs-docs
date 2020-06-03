@@ -1,0 +1,1063 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fedora Root on ZFS &mdash; OpenZFS  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RHEL and CentOS" href="../RHEL and CentOS.html" />
+    <link rel="prev" title="Fedora" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://wiki.archlinux.org/index.php/ZFS">ArchLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Debian/index.html">Debian</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Fedora</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#root-on-zfs">Root on ZFS</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Fedora Root on ZFS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://zfsonfreebsd.github.io/ZoF/">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://nixos.wiki/wiki/NixOS_on_ZFS">NixOS</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://software.opensuse.org/package/zfs">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RHEL and CentOS.html">RHEL and CentOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">Fedora</a> &raquo;</li>
+        
+      <li>Fedora Root on ZFS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Fedora/Fedora Root On ZFS.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fedora-root-on-zfs">
+<h1>Fedora Root on ZFS<a class="headerlink" href="#fedora-root-on-zfs" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#caution" id="id2">Caution</a></p></li>
+<li><p><a class="reference internal" href="#system-requirements" id="id3">System Requirements</a></p></li>
+<li><p><a class="reference internal" href="#support" id="id4">Support</a></p></li>
+<li><p><a class="reference internal" href="#contributing" id="id5">Contributing</a></p></li>
+<li><p><a class="reference internal" href="#encryption" id="id6">Encryption</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#step-1-prepare-the-install-environment" id="id7">Step 1: Prepare The Install Environment</a></p></li>
+<li><p><a class="reference internal" href="#step-2-disk-formatting" id="id8">Step 2: Disk Formatting</a></p></li>
+<li><p><a class="reference internal" href="#step-3-system-installation" id="id9">Step 3: System Installation</a></p></li>
+<li><p><a class="reference internal" href="#step-4-system-configuration" id="id10">Step 4: System Configuration</a></p></li>
+<li><p><a class="reference internal" href="#step-6-first-boot" id="id11">Step 6: First Boot</a></p></li>
+<li><p><a class="reference internal" href="#step-7-optional-configure-zvol-swap" id="id12">Step 7: Optional: Configure ZVol Swap</a></p></li>
+<li><p><a class="reference internal" href="#step-8-last-minute-fixes" id="id13">Step 8: Last Minute Fixes</a></p></li>
+<li><p><a class="reference internal" href="#step-9-final-cleanup" id="id14">Step 9: Final Cleanup</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id15">Troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#rescuing-using-a-live-cd" id="id16">Rescuing using a Live CD</a></p></li>
+<li><p><a class="reference internal" href="#qemu-kvm-xen" id="id17">QEMU/KVM/XEN</a></p></li>
+<li><p><a class="reference internal" href="#vmware" id="id18">VMware</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="caution">
+<h3><a class="toc-backref" href="#id2">Caution</a><a class="headerlink" href="#caution" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This HOWTO uses a whole physical disk.</p></li>
+<li><p>Do not use these instructions for dual-booting.</p></li>
+<li><p>Backup your data. Any existing data will be lost.</p></li>
+</ul>
+</div>
+<div class="section" id="system-requirements">
+<h3><a class="toc-backref" href="#id3">System Requirements</a><a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://getfedora.org/en/workstation/download/">64-bit Fedora Workstation (spins are not yet tested yet)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems">A 64-bit kernel is strongly encouraged.</a></p></li>
+<li><p>Installing on a drive which presents 4 KiB logical sectors (a “4Kn” drive)
+only works with UEFI booting. This not unique to ZFS. <a class="reference external" href="http://savannah.gnu.org/bugs/?46700">GRUB does not and
+will not work on 4Kn with legacy (BIOS) booting.</a></p></li>
+<li><p>You MUST use a UEFI system for this guide as GRUB is not yet supported. To verify UEFI, go to /sys/firmware/efi/efivars and make sure it is not empty.</p></li>
+</ul>
+<p>Computers that have less than 2 GiB of memory run ZFS slowly. 4 GiB of memory
+is recommended for normal performance in basic workloads. If you wish to use
+deduplication, you will need <a class="reference external" href="http://wiki.freebsd.org/ZFSTuningGuide#Deduplication">massive amounts of RAM</a>. Enabling
+deduplication is a permanent change that cannot be easily reverted.</p>
+</div>
+<div class="section" id="support">
+<h3><a class="toc-backref" href="#id4">Support</a><a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h3>
+<p>If you need help, reach out to the community using the <a class="reference internal" href="../../Project and Community/Mailing Lists.html"><span class="doc">zfs-discuss
+mailing list</span></a> or IRC at
+<a class="reference external" href="irc://irc.freenode.net/#zfsonlinux">#zfsonlinux</a> on <a class="reference external" href="https://freenode.net/">freenode</a>. If you have a bug report or feature request
+related to this HOWTO, please <a class="reference external" href="https://github.com/openzfs/openzfs-docs/issues/new?body=&#64;rlaager,%20I%20have%20the%20following%20issue%20with%20the%20Debian%20Buster%20Root%20on%20ZFS%20HOWTO:">file a new issue and mention &#64;rlaager</a>.</p>
+</div>
+<div class="section" id="contributing">
+<h3><a class="toc-backref" href="#id5">Contributing</a><a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Fork and clone: <a class="reference external" href="https://github.com/openzfs/openzfs-docs">https://github.com/openzfs/openzfs-docs</a></p></li>
+<li><p>Install the tools:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-pip sensible-utils
+<span class="nb">cd</span> openzfs-docs/docs
+pip3 install -r requirements.txt
+<span class="c1"># Add ~/.local/bin to your $PATH, e.g. by adding this to ~/.bashrc:</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</li>
+<li><p>Make your changes.</p></li>
+<li><p>Test:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs <span class="c1"># If you aren&#39;t already in the docs folder</span>
+make html
+sensible-browser _build/html/index.html
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--signoff</span></code> to a branch, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, and create a pull
+request. Mention &#64;rlaager.</p></li>
+</ol>
+</div>
+<div class="section" id="encryption">
+<h3><a class="toc-backref" href="#id6">Encryption</a><a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h3>
+<p>This guide supports three different encryption options: unencrypted, ZFS
+native encryption, and LUKS. With any option, all ZFS features are fully
+available.</p>
+<p>Unencrypted does not encrypt anything, of course. With no encryption
+happening, this option naturally has the best performance.</p>
+<p>ZFS native encryption encrypts the data and most metadata in the root
+pool. It does not encrypt dataset or snapshot names or properties. The
+boot pool is not encrypted at all, but it only contains the bootloader,
+kernel, and initrd. (Unless you put a password in <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>, the
+initrd is unlikely to contain sensitive data.) The system cannot boot
+without the passphrase being entered at the console. Performance is
+good. As the encryption happens in ZFS, even if multiple disks (mirror
+or raidz topologies) are used, the data only has to be encrypted once.</p>
+<p>LUKS encrypts almost everything. The only unencrypted data is the bootloader,
+kernel, and initrd. The system cannot boot without the passphrase being
+entered at the console. Performance is good, but LUKS sits underneath ZFS, so
+if multiple disks (mirror or raidz topologies) are used, the data has to be
+encrypted once per disk. Note that I (cheesycod) do not use LUKS and that you are using this at your own risk.</p>
+</div>
+</div>
+<div class="section" id="step-1-prepare-the-install-environment">
+<h2><a class="toc-backref" href="#id7">Step 1: Prepare The Install Environment</a><a class="headerlink" href="#step-1-prepare-the-install-environment" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Create a Fedora Workstation Live CD or USB. Note that you can do this through either Fedora Media Writer or using any other DVD or USB writing software.</p></li>
+<li><p>Boot the Fedora Workstation Live CD or USB that you made in Step 1.</p></li>
+<li><p>Connect your system to the Internet as appropriate (e.g. join your WiFi network). Once you have connected to the internet, open a terminal.</p></li>
+<li><p>Optional: Install and start the OpenSSH server in the Live CD environment:</p>
+<p>If you have a second system, using SSH to access the target system can be
+convenient:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install openssh-server
+sudo systemctl restart sshd
+</pre></div>
+</div>
+<p><strong>Hint:</strong> You can find your IP address with
+<code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">addr</span> <span class="pre">show</span> <span class="pre">scope</span> <span class="pre">global</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">inet</span></code>. Then, from your main machine,
+connect with <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">user&#64;IP</span></code>.</p>
+</li>
+<li><p>Become root using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-i</span></code> OR <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">root</span></code></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From here on out, all commands will assert that you are root unless previously specified</p>
+</div>
+<ol class="arabic simple">
+<li><p>Install the zfs-release rpm. You can do this by running the following command: <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">http://download.zfsonlinux.org/fedora/zfs-release$(rpm</span> <span class="pre">-E</span> <span class="pre">%dist).noarch.rpm</span></code>. It is also recommended to check the PGP keys to verify that the RPM has not been tampered.</p></li>
+<li><p>Install the kernel headers using <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">kernel-devel-$(uname</span> <span class="pre">-r)</span></code>. Note that you may need to use Bodhi if the kernel your version of Fedora is using is too old.</p></li>
+<li><p>Next swap the zfs FUSE with the openZFS kernel module: <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">swap</span> <span class="pre">zfs-fuse</span> <span class="pre">zfs</span></code></p></li>
+<li><p>Finally ensure that the zfs kernel module is loaded by running <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">modprobe</span> <span class="pre">zfs</span></code>.</p></li>
+</ol>
+</div>
+<div class="section" id="step-2-disk-formatting">
+<h2><a class="toc-backref" href="#id8">Step 2: Disk Formatting</a><a class="headerlink" href="#step-2-disk-formatting" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that if you want to use systemd-boot instead of GRUB, you should not create a boot pool. This only applies to systemd-boot users. Also note that GRUB is not yet supported (I have not yet gotten it to work correctly). For now, please use systemd-boot with Fedora. Also note that systemd-boot is easier than GRUB to setup with Fedora.</p>
+</div>
+<ol class="arabic">
+<li><p>Set a variable with the disk name:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DISK</span><span class="o">=</span>/dev/disk/by-id/scsi-SATA_disk1
+</pre></div>
+</div>
+<p>Always use the long <code class="docutils literal notranslate"><span class="pre">/dev/disk/by-id/*</span></code> aliases with ZFS. Using the
+<code class="docutils literal notranslate"><span class="pre">/dev/sd*</span></code> device nodes directly can cause sporadic import failures,
+especially on systems that have more than one storage pool.</p>
+<p><strong>Hints:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span> <span class="pre">/dev/disk/by-id</span></code> will list the aliases.</p></li>
+<li><p>Are you doing this in a virtual machine? If your virtual disk is missing
+from <code class="docutils literal notranslate"><span class="pre">/dev/disk/by-id</span></code>, use <code class="docutils literal notranslate"><span class="pre">/dev/vda</span></code> if you are using KVM with
+virtio; otherwise, read the <a class="reference external" href="#troubleshooting">troubleshooting</a>
+section.</p></li>
+</ul>
+</li>
+<li><p>If you are re-using a disk, clear it as necessary:</p>
+<p>If the disk was previously used in an MD array:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># See if one or more MD arrays are active:</span>
+cat /proc/mdstat
+<span class="c1"># If so, stop them (replace ``md0`` as required):</span>
+mdadm --stop /dev/md0
+
+<span class="c1"># For an array using the whole disk:</span>
+mdadm --zero-superblock --force <span class="nv">$DISK</span>
+<span class="c1"># For an array using a partition:</span>
+mdadm --zero-superblock --force <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part2
+</pre></div>
+</div>
+<p>Clear the partition table:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk --zap-all <span class="nv">$DISK</span>
+</pre></div>
+</div>
+<p>If you get a message about the kernel still using the old partition table,
+reboot and start over (except that you can skip this step).</p>
+</li>
+<li><p>Partition your disk(s):</p>
+<p>Run this if you need legacy (BIOS) booting:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk -a1 -n1:24K:+1000K -t1:EF02 <span class="nv">$DISK</span>
+</pre></div>
+</div>
+<p>Run this for UEFI booting (for use now or in the future). Note that you should increase the size of this to 1G if you are bot going to use a boot pool (systemd-boot):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk     -n2:1M:+512M   -t2:EF00 <span class="nv">$DISK</span>
+</pre></div>
+</div>
+<p>Run this for the boot pool (if you are using GRUB, not yet supported on Fedora):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk     -n3:0:+1G      -t3:BF01 <span class="nv">$DISK</span>
+</pre></div>
+</div>
+<p>(Optional, but recommended if you have high memory pressure): Create a swap partition (change the -n4 and -t4 if you are using systemd-boot):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk     -n4:0:+&lt;size&gt;G  -t4:8200 <span class="nv">$DISK</span> <span class="c1"># Make sure you replace &lt;size&gt; with the size of your swap partition.</span>
+mkswap     <span class="nv">$DISK</span>-part4
+swapon     <span class="nv">$DISK</span>-part4
+</pre></div>
+</div>
+<p>Choose one of the following options:</p>
+<ul>
+<li><p>Unencrypted or ZFS native encryption (change the -n4 and -t4 if you added a swap partition):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk     -n4:0:0        -t4:BF00 <span class="nv">$DISK</span>
+</pre></div>
+</div>
+</li>
+<li><p>LUKS (same warning as with Unencrypted and ZFS native encryption):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sgdisk     -n4:0:0        -t4:8309 <span class="nv">$DISK</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>If you are creating a mirror or raidz topology, repeat the partitioning
+commands for all the disks which will be part of the pool.</p>
+</li>
+<li><p>Create the boot pool (if you are using GRUB, not yet supported on Fedora):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> -d <span class="se">\</span>
+    -o feature@async_destroy<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@bookmarks<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@embedded_data<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@empty_bpobj<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@enabled_txg<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@extensible_dataset<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@filesystem_limits<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@hole_birth<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@large_blocks<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@lz4_compress<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@spacemap_histogram<span class="o">=</span>enabled <span class="se">\</span>
+    -o feature@zpool_checkpoint<span class="o">=</span>enabled <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl -O <span class="nv">canmount</span><span class="o">=</span>off -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\</span>
+    -O <span class="nv">devices</span><span class="o">=</span>off -O <span class="nv">normalization</span><span class="o">=</span>formD -O <span class="nv">relatime</span><span class="o">=</span>on -O <span class="nv">xattr</span><span class="o">=</span>sa <span class="se">\</span>
+    -O <span class="nv">mountpoint</span><span class="o">=</span>/boot -R /mnt <span class="se">\</span>
+    bpool <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part3
+</pre></div>
+</div>
+<p>You should not need to customize any of the options for the boot pool.</p>
+<p>GRUB does not support all of the zpool features. See <code class="docutils literal notranslate"><span class="pre">spa_feature_names</span></code>
+in <a class="reference external" href="http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276">grub-core/fs/zfs/zfs.c</a>.
+This step creates a separate boot pool for <code class="docutils literal notranslate"><span class="pre">/boot</span></code> with the features
+limited to only those that GRUB supports, allowing the root pool to use
+any/all features. Note that GRUB opens the pool read-only, so all
+read-only compatible features are “supported” by GRUB.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li><p>If you are creating a mirror topology, create the pool using:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    ... <span class="se">\</span>
+    bpool mirror <span class="se">\</span>
+    /dev/disk/by-id/scsi-SATA_disk1-part3 <span class="se">\</span>
+    /dev/disk/by-id/scsi-SATA_disk2-part3
+</pre></div>
+</div>
+</li>
+<li><p>For raidz topologies, replace <code class="docutils literal notranslate"><span class="pre">mirror</span></code> in the above command with
+<code class="docutils literal notranslate"><span class="pre">raidz</span></code>, <code class="docutils literal notranslate"><span class="pre">raidz2</span></code>, or  <code class="docutils literal notranslate"><span class="pre">raidz3</span></code> and list the partitions from
+additional disks.</p></li>
+<li><p>The pool name is arbitrary. If changed, the new name must be used
+consistently. The <code class="docutils literal notranslate"><span class="pre">bpool</span></code> convention originated in this HOWTO.</p></li>
+</ul>
+<p><strong>Feature Notes:</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">allocation_classes</span></code> feature should be safe to use. However, unless
+one is using it (i.e. a <code class="docutils literal notranslate"><span class="pre">special</span></code> vdev), there is no point to enabling
+it. It is extremely unlikely that someone would use this feature for a
+boot pool. If one cares about speeding up the boot pool, it would make
+more sense to put the whole pool on the faster disk rather than using it
+as a <code class="docutils literal notranslate"><span class="pre">special</span></code> vdev.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">project_quota</span></code> feature has been tested and is safe to use. This
+feature is extremely unlikely to matter for the boot pool.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">resilver_defer</span></code> should be safe but the boot pool is small enough
+that it is unlikely to be necessary.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">spacemap_v2</span></code> feature has been tested and is safe to use. The boot
+pool is small, so this does not matter in practice.</p></li>
+<li><p>As a read-only compatible feature, the <code class="docutils literal notranslate"><span class="pre">userobj_accounting</span></code> feature
+should be compatible in theory, but in practice, GRUB can fail with an
+“invalid dnode type” error. This feature does not matter for <code class="docutils literal notranslate"><span class="pre">/boot</span></code>
+anyway.</p></li>
+</ul>
+</li>
+<li><p>Create the root pool (note that you might need to change the DISK depending on the options you choose:</p>
+<p>Choose one of the following options:</p>
+<ul>
+<li><p>Unencrypted:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl -O <span class="nv">canmount</span><span class="o">=</span>off -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\</span>
+    -O <span class="nv">dnodesize</span><span class="o">=</span>auto -O <span class="nv">normalization</span><span class="o">=</span>formD -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">xattr</span><span class="o">=</span>sa -O <span class="nv">mountpoint</span><span class="o">=</span>/ -R /mnt <span class="se">\</span>
+    rpool <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part4
+</pre></div>
+</div>
+</li>
+<li><p>ZFS native encryption:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\</span>
+    -O <span class="nv">encryption</span><span class="o">=</span>aes-256-gcm <span class="se">\</span>
+    -O <span class="nv">keylocation</span><span class="o">=</span>prompt -O <span class="nv">keyformat</span><span class="o">=</span>passphrase <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl -O <span class="nv">canmount</span><span class="o">=</span>off -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\</span>
+    -O <span class="nv">dnodesize</span><span class="o">=</span>auto -O <span class="nv">normalization</span><span class="o">=</span>formD -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">xattr</span><span class="o">=</span>sa -O <span class="nv">mountpoint</span><span class="o">=</span>/ -R /mnt <span class="se">\</span>
+    rpool <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part4
+</pre></div>
+</div>
+</li>
+<li><p>LUKS:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>apt install --yes cryptsetup
+cryptsetup luksFormat -c aes-xts-plain64 -s <span class="m">512</span> -h sha256 <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part4
+cryptsetup luksOpen <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part4 luks1
+zpool create <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl -O <span class="nv">canmount</span><span class="o">=</span>off -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\</span>
+    -O <span class="nv">dnodesize</span><span class="o">=</span>auto -O <span class="nv">normalization</span><span class="o">=</span>formD -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">xattr</span><span class="o">=</span>sa -O <span class="nv">mountpoint</span><span class="o">=</span>/ -R /mnt <span class="se">\</span>
+    rpool /dev/mapper/luks1
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p>The use of <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is recommended here because many drives
+today have 4 KiB (or larger) physical sectors, even though they
+present 512 B logical sectors. Also, a future replacement drive may
+have 4 KiB physical sectors (in which case <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is desirable)
+or 4 KiB logical sectors (in which case <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is required).</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">acltype=posixacl</span></code> enables POSIX ACLs globally. If you
+do not want this, remove that option, but later add
+<code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">acltype=posixacl</span></code> (note: lowercase “o”) to the <code class="docutils literal notranslate"><span class="pre">zfs</span> <span class="pre">create</span></code>
+for <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>, as <a class="reference external" href="https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported">journald requires ACLs</a></p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">normalization=formD</span></code> eliminates some corner cases relating
+to UTF-8 filename normalization. It also implies <code class="docutils literal notranslate"><span class="pre">utf8only=on</span></code>,
+which means that only UTF-8 filenames are allowed. If you care to
+support non-UTF-8 filenames, do not use this option. For a discussion
+of why requiring UTF-8 filenames may be a bad idea, see <a class="reference external" href="http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames">The problems
+with enforced UTF-8 only filenames</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recordsize</span></code> is unset (leaving it at the default of 128 KiB). If you
+want to tune it (e.g. <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">recordsize=1M</span></code>), see <a class="reference external" href="https://jrs-s.net/2019/04/03/on-zfs-recordsize/">these</a> <a class="reference external" href="http://blog.programster.org/zfs-record-size">various</a> <a class="reference external" href="https://utcc.utoronto.ca/~cks/space/blog/solaris/ZFSFileRecordsizeGrowth">blog</a>
+<a class="reference external" href="https://utcc.utoronto.ca/~cks/space/blog/solaris/ZFSRecordsizeAndCompression">posts</a>.</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">relatime=on</span></code> is a middle ground between classic POSIX
+<code class="docutils literal notranslate"><span class="pre">atime</span></code> behavior (with its significant performance impact) and
+<code class="docutils literal notranslate"><span class="pre">atime=off</span></code> (which provides the best performance by completely
+disabling atime updates). Since Linux 2.6.30, <code class="docutils literal notranslate"><span class="pre">relatime</span></code> has been
+the default for other filesystems. See <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime">RedHat’s documentation</a>
+for further information.</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> <a class="reference external" href="https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355">vastly improves the performance of extended
+attributes</a>.
+Inside ZFS, extended attributes are used to implement POSIX ACLs.
+Extended attributes can also be used by user-space applications.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Extended_file_attributes#Linux">They are used by some desktop GUI applications.</a>
+<a class="reference external" href="https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs">They can be used by Samba to store Windows ACLs and DOS attributes;
+they are required for a Samba Active Directory domain controller.</a>
+Note that <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> is <a class="reference external" href="http://open-zfs.org/wiki/Platform_code_differences">Linux-specific</a>. If you move your
+<code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> pool to another OpenZFS implementation besides ZFS-on-Linux,
+extended attributes will not be readable (though your data will be). If
+portability of extended attributes is important to you, omit the
+<code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">xattr=sa</span></code> above. Even if you do not want <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> for the whole
+pool, it is probably fine to use it for <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>.</p></li>
+<li><p>Make sure to include the <code class="docutils literal notranslate"><span class="pre">-part4</span></code> portion of the drive path. If you
+forget that, you are specifying the whole disk, which ZFS will then
+re-partition, and you will lose the bootloader partition(s).</p></li>
+<li><p>ZFS native encryption <a class="reference external" href="https://github.com/openzfs/zfs/commit/31b160f0a6c673c8f926233af2ed6d5354808393">now</a>
+defaults to <code class="docutils literal notranslate"><span class="pre">aes-256-gcm</span></code>.</p></li>
+<li><p>For LUKS, the key size chosen is 512 bits. However, XTS mode requires two
+keys, so the LUKS key is split in half. Thus, <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">512</span></code> means AES-256.</p></li>
+<li><p>Your passphrase will likely be the weakest link. Choose wisely. See
+<a class="reference external" href="https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects">section 5 of the cryptsetup FAQ</a>
+for guidance.</p></li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li><p>If you are creating a mirror topology, create the pool using:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    ... <span class="se">\</span>
+    bpool mirror <span class="se">\</span>
+    /dev/disk/by-id/scsi-SATA_disk1-part3 <span class="se">\</span>
+    /dev/disk/by-id/scsi-SATA_disk2-part3
+</pre></div>
+</div>
+</li>
+<li><p>For raidz topologies, replace <code class="docutils literal notranslate"><span class="pre">mirror</span></code> in the above command with
+<code class="docutils literal notranslate"><span class="pre">raidz</span></code>, <code class="docutils literal notranslate"><span class="pre">raidz2</span></code>, or  <code class="docutils literal notranslate"><span class="pre">raidz3</span></code> and list the partitions from
+additional disks.</p></li>
+<li><p>When using LUKS with mirror or raidz topologies, use
+<code class="docutils literal notranslate"><span class="pre">/dev/mapper/luks1</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev/mapper/luks2</span></code>, etc., which you will have
+to create using <code class="docutils literal notranslate"><span class="pre">cryptsetup</span></code>.</p></li>
+<li><p>The pool name is arbitrary. If changed, the new name must be used
+consistently. On systems that can automatically install to ZFS, the root
+pool is named <code class="docutils literal notranslate"><span class="pre">rpool</span></code> by default.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="step-3-system-installation">
+<h2><a class="toc-backref" href="#id9">Step 3: System Installation</a><a class="headerlink" href="#step-3-system-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Create filesystem datasets to act as containers (Again, omit the second line if you are using systemd-boot):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none rpool/ROOT
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none bpool/BOOT
+</pre></div>
+</div>
+<p>On Solaris systems, the root filesystem is cloned and the suffix is
+incremented for major system changes through <code class="docutils literal notranslate"><span class="pre">pkg</span> <span class="pre">image-update</span></code> or
+<code class="docutils literal notranslate"><span class="pre">beadm</span></code>. Similar functionality has been implemented in Ubuntu 20.04 with
+the <code class="docutils literal notranslate"><span class="pre">zsys</span></code> tool, though its dataset layout is more complicated. Even
+without such a tool, the <cite>rpool/ROOT</cite> and <cite>bpool/BOOT</cite> containers can still
+be used for manually created clones. That said, this HOWTO assumes a single
+filesystem for <code class="docutils literal notranslate"><span class="pre">/boot</span></code> for simplicity.</p>
+</li>
+<li><p>Create filesystem datasets for the root and boot filesystems (again, omit the second two lines if you are using systemd-boot):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>noauto -o <span class="nv">mountpoint</span><span class="o">=</span>/ rpool/ROOT/fedora
+zfs mount rpool/ROOT/fedora
+
+zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>/boot bpool/BOOT/fedora
+zfs mount bpool/BOOT/fedora
+</pre></div>
+</div>
+<p>With ZFS, it is not normally necessary to use a mount command (either
+<code class="docutils literal notranslate"><span class="pre">mount</span></code> or <code class="docutils literal notranslate"><span class="pre">zfs</span> <span class="pre">mount</span></code>). This situation is an exception because of
+<code class="docutils literal notranslate"><span class="pre">canmount=noauto</span></code>.</p>
+</li>
+<li><p>Create datasets:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create                                 rpool/home
+zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>/root             rpool/home/root
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off                 rpool/var
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off                 rpool/var/lib
+zfs create                                 rpool/var/log
+zfs create                                 rpool/var/spool
+</pre></div>
+</div>
+<p>The datasets below are optional, depending on your preferences and/or
+software choices.</p>
+<p>If you wish to exclude these from snapshots:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span>  rpool/var/cache
+zfs create -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span>  rpool/var/tmp
+chmod <span class="m">1777</span> /mnt/var/tmp
+</pre></div>
+</div>
+<p>If this system will use Docker (which manages its own datasets &amp;
+snapshots):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span>  rpool/var/lib/docker
+</pre></div>
+</div>
+<p>If this system will use NFS (locking):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span>  rpool/var/lib/nfs
+</pre></div>
+</div>
+<p>A tmpfs is recommended later, but if you want a separate dataset for
+<code class="docutils literal notranslate"><span class="pre">/tmp</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span>  rpool/tmp
+chmod <span class="m">1777</span> /mnt/tmp
+</pre></div>
+</div>
+<p>Note that the reason why we are not fully seperating everything like we did in Ubuntu is because dnf will fail to install or update certain packages if we create too many datasets.</p>
+<p>The primary goal of this dataset layout is to separate the OS from user
+data. This allows the root filesystem to be rolled back without rolling
+back user data.</p>
+<p>If you do nothing extra, <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> will be stored as part of the root
+filesystem. Alternatively, you can create a separate dataset for <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>,
+as shown above. This keeps the <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> data out of snapshots of your root
+filesystem. It also allows you to set a quota on <code class="docutils literal notranslate"><span class="pre">rpool/tmp</span></code>, if you want
+to limit the maximum space used. Otherwise, you can use a tmpfs (RAM
+filesystem) later.</p>
+</li>
+<li><p>Copy the LiveCD to your HDD/SDD:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rsync -avxHASX / /sysroot/
+</pre></div>
+</div>
+<p>It is important to not forget the trailing /.
+This command copies the LiveCD to our new zfs datasets and this is the only way I have found to reliably install and boot Fedora Workstation</p>
+</li>
+</ol>
+</div>
+<div class="section" id="step-4-system-configuration">
+<h2><a class="toc-backref" href="#id10">Step 4: System Configuration</a><a class="headerlink" href="#step-4-system-configuration" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Configure the hostname:</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">HOSTNAME</span></code> with the desired hostname:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> HOSTNAME &gt; /mnt/etc/hostname
+vi /mnt/etc/hosts
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a line:
+127.0.1.1       HOSTNAME
+or if the system has a real name in DNS:
+127.0.1.1       FQDN HOSTNAME
+</pre></div>
+</div>
+<p><strong>Hint:</strong> Use <code class="docutils literal notranslate"><span class="pre">nano</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span></code> if you find <code class="docutils literal notranslate"><span class="pre">vi</span></code> confusing.</p>
+</li>
+<li><p>Configure the network interface:</p>
+<p>Find the interface name:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ip addr show
+</pre></div>
+</div>
+<p>Adjust <code class="docutils literal notranslate"><span class="pre">NAME</span></code> below to match your interface name:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>vi /mnt/etc/network/interfaces.d/NAME
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>auto NAME
+iface NAME inet dhcp
+</pre></div>
+</div>
+<p>Customize this file if the system is not a DHCP client.</p>
+</li>
+<li><p>Bind the virtual filesystems from the LiveCD environment to the new
+system and <code class="docutils literal notranslate"><span class="pre">chroot</span></code> into it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mount --rbind /dev  /mnt/dev
+mount --rbind /proc /mnt/proc
+mount --rbind /sys  /mnt/sys
+chroot /mnt /usr/bin/env <span class="nv">DISK</span><span class="o">=</span><span class="nv">$DISK</span> bash --login
+</pre></div>
+</div>
+<p><strong>Note:</strong> This is using <code class="docutils literal notranslate"><span class="pre">--rbind</span></code>, not <code class="docutils literal notranslate"><span class="pre">--bind</span></code>.</p>
+</li>
+<li><p>Update the new system:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf update
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the ZFS install we did outside in the LiveCD persists here. Hence, it is not needed to maunally install zfs-release and zfs again.i</p>
+</div>
+<ol class="arabic">
+<li><p>For LUKS installs only, setup <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf install cryptsetup
+
+<span class="nb">echo</span> luks1 <span class="nv">UUID</span><span class="o">=</span><span class="k">$(</span>blkid -s UUID -o value <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part4<span class="k">)</span> none <span class="se">\</span>
+    luks,discard,initramfs &gt; /etc/crypttab
+</pre></div>
+</div>
+<p>The use of <code class="docutils literal notranslate"><span class="pre">initramfs</span></code> is a work-around for <a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906">cryptsetup does not support
+ZFS</a>.</p>
+<p><strong>Hint:</strong> If you are creating a mirror or raidz topology, repeat the
+<code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> entries for <code class="docutils literal notranslate"><span class="pre">luks2</span></code>, etc. adjusting for each disk.</p>
+</li>
+<li><p>Install GRUB (note that this is not yet supported by this guide, use systemd-boot for now instead)</p></li>
+<li><p>Install systemd-boot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>   rm -rvf /boot <span class="c1"># Don&#39;t worry, we&#39;ll reinstall the kernel later</span>
+   mkdir boot <span class="c1"># Create the boot folder</span>
+   dnf install dosfstools
+   mkdosfs -F <span class="m">32</span> -s <span class="m">1</span> -n EFI <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part2 <span class="c1"># Change this if needed</span>
+   <span class="nb">echo</span> <span class="nv">PARTUUID</span><span class="o">=</span><span class="k">$(</span>blkid -s PARTUUID -o value <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>-part2<span class="k">)</span> <span class="se">\</span>
+      /boot vfat nofail,x-systemd.device-timeout<span class="o">=</span><span class="m">1</span> <span class="m">0</span> <span class="m">1</span> &gt;&gt; /etc/fstab
+   mount /boot
+   bootctl install <span class="c1"># Install systemd-boot to ESP</span>
+   sudo dnf reinstall kernel-core <span class="c1"># Reinstall the kernel</span>
+
+ **Notes:**
+
+- The <span class="sb">``</span>-s <span class="m">1</span><span class="sb">``</span> <span class="k">for</span> <span class="sb">``</span>mkdosfs<span class="sb">``</span> is only necessary <span class="k">for</span> drives which present
+   <span class="m">4</span> KiB logical sectors <span class="o">(</span>“4Kn” drives<span class="o">)</span> to meet the minimum cluster size
+   <span class="o">(</span>given the partition size of <span class="m">512</span> MiB<span class="o">)</span> <span class="k">for</span> FAT32. It also works fine on
+   drives which present <span class="m">512</span> B sectors.
+- For a mirror or raidz topology, this step only installs GRUB on the
+  first disk. The other disk<span class="o">(</span>s<span class="o">)</span> will be handled later.
+</pre></div>
+</div>
+</li>
+<li><p>Remove stale packages:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf remove --allowerasing --best anaconda-core anaconda-gui anaconda-gui grub* os-prober
+</pre></div>
+</div>
+<p>This avoids error messages from <cite>update-grub</cite>.  <cite>os-prober</cite> is only
+necessary in dual-boot configurations.
+Removal of anaconda and grub prevent issues such as the “Install Fedora” issue and dnf bootloader conflicts.</p>
+</li>
+<li><p>Set a root password:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>passwd
+</pre></div>
+</div>
+</li>
+<li><p>Enable importing bpool (only needed when using GRUB, not yet supported)</p></li>
+<li><p>Optional (but recommended): Mount a tmpfs to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code></p>
+<p>If you chose to create a <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> dataset above, skip this step, as they
+are mutually exclusive choices. Otherwise, you can put <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> on a
+tmpfs (RAM filesystem) by enabling the <code class="docutils literal notranslate"><span class="pre">tmp.mount</span></code> unit.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+systemctl <span class="nb">enable</span> tmp.mount
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GRUB installation is not yet supported by this guide. The above steps should have already installed systemd-boot.</p>
+</div>
+</div>
+<div class="section" id="step-6-first-boot">
+<h2><a class="toc-backref" href="#id11">Step 6: First Boot</a><a class="headerlink" href="#step-6-first-boot" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Rebuild initramfs one last time for certainty:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dracut --kver <span class="k">$(</span>uname -r<span class="k">)</span> --force --add-drivers <span class="s2">&quot;zfs&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you updated your kernel in this guide, you will need to change the $(uname -r) to your updated kernel version. You can find this in /lib/modules.</p>
+</div>
+<ol class="arabic">
+<li><p>Optional: Install SSH (not needed if already done in the beginning):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf install --yes openssh-server
+</pre></div>
+</div>
+</li>
+<li><p>Optional: Snapshot the initial installation (omit the last one if you are using systemd-boot):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs snapshot bpool/BOOT/fedora@install
+zfs snapshot rpool/ROOT/fedora@install
+</pre></div>
+</div>
+<p>In the future, you will likely want to take snapshots before each
+upgrade, and remove old snapshots (including this one) at some point to
+save space.</p>
+</li>
+<li><p>Exit from the <code class="docutils literal notranslate"><span class="pre">chroot</span></code> environment back to the LiveCD environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run these commands in the LiveCD environment to unmount all
+filesystems:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mount <span class="p">|</span> grep -v zfs <span class="p">|</span> tac <span class="p">|</span> awk <span class="s1">&#39;/\/mnt/ {print $3}&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    xargs -i<span class="o">{}</span> umount -lf <span class="o">{}</span>
+zpool <span class="nb">export</span> -a
+</pre></div>
+</div>
+</li>
+<li><p>Reboot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>reboot
+</pre></div>
+</div>
+<p>Wait for the newly installed system to boot normally (hopefully). You will/should automatically be logged in as liveuser.</p>
+</li>
+<li><p>Create a user account:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>. Open GNOME Settings and navigate to User Accounts
+<span class="m">2</span>. Click Unlock
+<span class="m">3</span>. Click the Add User button
+<span class="m">4</span>. Type in your user information. Make sure this user is an Administrator.
+<span class="m">5</span>. Sign out of liveuser
+<span class="m">6</span>. Login using your new user account
+<span class="m">7</span>. Open GNOME settings again and navigate to User Accounts
+<span class="m">8</span>. Click Unlock
+<span class="m">9</span>. Click liveuser and click Delete User
+<span class="m">10</span>. Set auto-login <span class="k">for</span> your user account <span class="k">if</span> you want
+<span class="m">11</span>. Reboot
+</pre></div>
+</div>
+</li>
+<li><p>Mirror GRUB (not yet supported as GRUB is not yet supported)</p></li>
+</ol>
+</div>
+<div class="section" id="step-7-optional-configure-zvol-swap">
+<h2><a class="toc-backref" href="#id12">Step 7: Optional: Configure ZVol Swap</a><a class="headerlink" href="#step-7-optional-configure-zvol-swap" title="Permalink to this headline">¶</a></h2>
+<p><strong>Caution</strong>: On systems with extremely high memory pressure, using a
+zvol for swap can result in lockup, regardless of how much swap is still
+available. There is <a class="reference external" href="https://github.com/zfsonlinux/zfs/issues/7734">a bug report upstream</a>. On such systems, it is wise to create a swap partition and use that. This should have been covered in Partitioning.</p>
+<ol class="arabic">
+<li><p>Create a volume dataset (zvol) for use as a swap device:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -V 4G -b <span class="k">$(</span>getconf PAGESIZE<span class="k">)</span> -o <span class="nv">compression</span><span class="o">=</span>zle <span class="se">\</span>
+    -o <span class="nv">logbias</span><span class="o">=</span>throughput -o <span class="nv">sync</span><span class="o">=</span>always <span class="se">\</span>
+    -o <span class="nv">primarycache</span><span class="o">=</span>metadata -o <span class="nv">secondarycache</span><span class="o">=</span>none <span class="se">\</span>
+    -o com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span> rpool/swap
+</pre></div>
+</div>
+<p>You can adjust the size (the <code class="docutils literal notranslate"><span class="pre">4G</span></code> part) to your needs.</p>
+<p>The compression algorithm is set to <code class="docutils literal notranslate"><span class="pre">zle</span></code> because it is the cheapest
+available algorithm. As this guide recommends <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> (4 kiB
+blocks on disk), the common case of a 4 kiB page size means that no
+compression algorithm can reduce I/O. The exception is all-zero pages,
+which are dropped by ZFS; but some form of compression has to be enabled
+to get this behavior.</p>
+</li>
+<li><p>Configure the swap device:</p>
+<p><strong>Caution</strong>: Always use long <code class="docutils literal notranslate"><span class="pre">/dev/zvol</span></code> aliases in configuration
+files. Never use a short <code class="docutils literal notranslate"><span class="pre">/dev/zdX</span></code> device name.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkswap -f /dev/zvol/rpool/swap <span class="c1"># Omit this if you already did it in partitioning with a swap partition</span>
+<span class="nb">echo</span> /dev/zvol/rpool/swap none swap discard <span class="m">0</span> <span class="m">0</span> &gt;&gt; /etc/fstab <span class="c1"># Change this to your swap partition if you are using a swap partition</span>
+<span class="nb">echo</span> <span class="nv">RESUME</span><span class="o">=</span>none &gt; /etc/initramfs-tools/conf.d/resume <span class="c1"># Omit this if you are using a swap partition and not a zvol.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">RESUME=none</span></code> is necessary to disable resuming from hibernation.
+This does not work, as the zvol is not present (because the pool has not
+yet been imported) at the time the resume script runs. If it is not
+disabled, the boot process hangs for 30 seconds waiting for the swap
+zvol to appear.</p>
+</li>
+<li><p>Enable the swap device:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>swapon -av
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="step-8-last-minute-fixes">
+<h2><a class="toc-backref" href="#id13">Step 8: Last Minute Fixes</a><a class="headerlink" href="#step-8-last-minute-fixes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Upgrade the system (if you haven’t already done it):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf update
+</pre></div>
+</div>
+</li>
+<li><p>Optional: Disable log compression:</p>
+<p>As <code class="docutils literal notranslate"><span class="pre">/var/log</span></code> is already compressed by ZFS, logrotate’s compression is
+going to burn CPU and disk I/O for (in most cases) very little gain. Also,
+if you are making snapshots of <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>, logrotate’s compression will
+actually waste space, as the uncompressed data will live on in the
+snapshot. You can edit the files in <code class="docutils literal notranslate"><span class="pre">/etc/logrotate.d</span></code> by hand to comment
+out <code class="docutils literal notranslate"><span class="pre">compress</span></code>, or use this loop (copy-and-paste highly recommended):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> file in /etc/logrotate.d/* <span class="p">;</span> <span class="k">do</span>
+    <span class="k">if</span> grep -Eq <span class="s2">&quot;(^|[^#y])compress&quot;</span> <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">then</span>
+        sed -i -r <span class="s2">&quot;s/(^|[^#y])(compress)/\1#\2/&quot;</span> <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Reboot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>reboot
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="step-9-final-cleanup">
+<h2><a class="toc-backref" href="#id14">Step 9: Final Cleanup</a><a class="headerlink" href="#step-9-final-cleanup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Wait for the system to boot normally. Login using the account you
+created. Ensure the system (including networking) works normally.</p></li>
+<li><p>Optional: Delete the snapshots of the initial installation (omit the second one if you are not using GRUB):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo zfs destroy bpool/BOOT/fedora@install
+sudo zfs destroy rpool/ROOT/fedora@install
+</pre></div>
+</div>
+</li>
+<li><p>Optional (but highly recommended): Disable the root password:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo usermod -p <span class="s1">&#39;*&#39;</span> root
+</pre></div>
+</div>
+</li>
+<li><p>Optional: For LUKS installs only, backup the LUKS header:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksHeaderBackup /dev/disk/by-id/scsi-SATA_disk1-part4 <span class="se">\</span>
+    --header-backup-file luks1-header.dat
+</pre></div>
+</div>
+<p>Store that backup somewhere safe (e.g. cloud storage). It is protected by
+your LUKS passphrase, but you may wish to use additional encryption.</p>
+<p><strong>Hint:</strong> If you created a mirror or raidz topology, repeat this for each
+LUKS volume (<code class="docutils literal notranslate"><span class="pre">luks2</span></code>, etc.).</p>
+</li>
+</ol>
+</div>
+<div class="section" id="troubleshooting">
+<h2><a class="toc-backref" href="#id15">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rescuing-using-a-live-cd">
+<h3><a class="toc-backref" href="#id16">Rescuing using a Live CD</a><a class="headerlink" href="#rescuing-using-a-live-cd" title="Permalink to this headline">¶</a></h3>
+<p>Go through <a class="reference external" href="#step-1-prepare-the-install-environment">Step 1: Prepare The Install Environment</a>.</p>
+<p>For LUKS, first unlock the disk(s):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf install cryptsetup
+cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
+<span class="c1"># Repeat for additional disks, if this is a mirror or raidz topology.</span>
+</pre></div>
+</div>
+<p>Mount everything correctly:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool <span class="nb">export</span> -a
+zpool import -N -R /mnt rpool
+zpool import -N -R /mnt bpool
+zfs load-key -a
+zfs mount rpool/ROOT/fedora
+zfs mount -a
+</pre></div>
+</div>
+<p>If needed, you can chroot into your installed environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mount --rbind /dev  /mnt/dev
+mount --rbind /proc /mnt/proc
+mount --rbind /sys  /mnt/sys
+chroot /mnt /bin/bash --login
+mount /boot
+mount -a
+</pre></div>
+</div>
+<p>Do whatever you need to do to fix your system.</p>
+<p>When done, cleanup:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+mount <span class="p">|</span> grep -v zfs <span class="p">|</span> tac <span class="p">|</span> awk <span class="s1">&#39;/\/mnt/ {print $3}&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    xargs -i<span class="o">{}</span> umount -lf <span class="o">{}</span>
+zpool <span class="nb">export</span> -a
+reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="qemu-kvm-xen">
+<h3><a class="toc-backref" href="#id17">QEMU/KVM/XEN</a><a class="headerlink" href="#qemu-kvm-xen" title="Permalink to this headline">¶</a></h3>
+<p>Set a unique serial number on each virtual disk using libvirt or qemu
+(e.g. <code class="docutils literal notranslate"><span class="pre">-drive</span> <span class="pre">if=none,id=disk1,file=disk1.qcow2,serial=1234567890</span></code>).</p>
+<p>To be able to use UEFI in guests (instead of only BIOS booting), run
+this on the host:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install ovmf <span class="c1"># or dnf install edk2-ovmf (if the host is Fedora)</span>
+sudo vi /etc/libvirt/qemu.conf
+</pre></div>
+</div>
+<p>Uncomment these lines:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nvram = [
+   &quot;/usr/share/OVMF/OVMF_CODE.fd:/usr/share/OVMF/OVMF_VARS.fd&quot;,
+   &quot;/usr/share/OVMF/OVMF_CODE.secboot.fd:/usr/share/OVMF/OVMF_VARS.fd&quot;,
+   &quot;/usr/share/AAVMF/AAVMF_CODE.fd:/usr/share/AAVMF/AAVMF_VARS.fd&quot;,
+   &quot;/usr/share/AAVMF/AAVMF32_CODE.fd:/usr/share/AAVMF/AAVMF32_VARS.fd&quot;
+]
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart libvirtd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="vmware">
+<h3><a class="toc-backref" href="#id18">VMware</a><a class="headerlink" href="#vmware" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">disk.EnableUUID</span> <span class="pre">=</span> <span class="pre">&quot;TRUE&quot;</span></code> in the vmx file or vsphere configuration.
+Doing this ensures that <code class="docutils literal notranslate"><span class="pre">/dev/disk</span></code> aliases are created in the guest.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../RHEL and CentOS.html" class="btn btn-neutral float-right" title="RHEL and CentOS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Fedora" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, OpenZFS
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
